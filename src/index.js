@@ -1,13 +1,16 @@
 import 'dotenv/config';
-import cors from 'cors';
 import express from 'express';
 
 const app = express();
-
-app.use(cors());
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
+});
+
+app.post('/email', (req, res) => {
+  console.log(req.body);
+  res.send(JSON.stringify(req.body));
 });
 
 app.listen(process.env.PORT, () =>
