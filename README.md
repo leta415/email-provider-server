@@ -4,8 +4,16 @@ Make sure these requirements are set up: [node & npm](https://nodejs.org/en/), [
 
 1. `git clone https://github.com/leta415/email-provider-server.git`
 2. `cd email-provider-server`
-3. `npm install`
-4. To kick off the local server, run `npm start`
+3. Create a file called `.env` in the root directory of the repository. Inside the file, define the following variables:
+
+  ```
+  SENDGRID_API_KEY=<replace_with_your_sendgrid_api_key>
+  POSTMARK_API_KE=<replace_with_your_postmark_api_key}>
+  USE_POSTMARK=0
+  ```
+  To use the Sendgrid email provider, keep the USE_POSTMARK value at 0. Otherwise, use the Postmark email provider, change the value to 1.
+4. `npm install`
+5. To kick off the local server, run `npm start`  
 
 # Languages and Frameworks
 
