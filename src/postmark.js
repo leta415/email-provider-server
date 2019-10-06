@@ -5,6 +5,8 @@ const https = require('https');
 exports.postmarkRequest = function(data) {
     // console.log(`[data before write] ${data}`)
     // console.log(`[json stringified data before write] ${JSON.stringify(data)}`)
+
+    // Build Postmark request options
     const options = {
       hostname: 'api.postmarkapp.com',
       path: '/email',
@@ -15,21 +17,20 @@ exports.postmarkRequest = function(data) {
       }
     }
 
-    // console.log(`[options] ${JSON.stringify(options)}`)
+    // Convert data to Postmark input data
+    const postmarkInput = {
+        from: `${data.from_name} ${data.from}`,
+        to: `${data.to_name} ${data.to}`,
+        subject: `${data.subject}`,
+        textbody: `${data.body}`
+    }
 
-    // const data = {
-    //     from: 'leta.he@workday.com',
-    //     to: 'leta.he@workday.com',
-    //     subject: 'Hey Pris!',
-    //     htmlbody: "<strong>Hello</strong> dear Postmark user."
-    // }
-
+    // Make call to Postgrid to send the email
     const req = https.request(options, (res) => {
       console.log(`statusCode: ${res.statusCode}`)
-      // res.setEncoding('utf8');
 
       res.on('data', (d) => {
-        process.stdout.write('[data] ' + d)
+        process.stdout.write(d)
       })
     })
 
@@ -38,6 +39,6 @@ exports.postmarkRequest = function(data) {
     })
 
 
-    req.write(JSON.stringify(data))
+    req.write(JSON.stringify(postmarkInput))
     req.end()
 }

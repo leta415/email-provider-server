@@ -3,6 +3,8 @@ import 'dotenv/config';
 const https = require('https');
 
 exports.sendgridRequest = function(data) {
+
+    // Build Sendgrid request options
     const options = {
       hostname: 'api.sendgrid.com',
       path: '/v3/mail/send',
@@ -13,35 +15,31 @@ exports.sendgridRequest = function(data) {
       }
     }
 
-    // const data = 
-    // {
-    //     personalizations:
-    //         [{
-    //             to:[{email:"leta.he.415@gmail.com", name:"Jenny Doe"}],
-    //             subject: "Hello Jenny!"
-    //         }], 
-    //     content: 
-    //         [{
-    //             type: "text/plain", value: "Heya!"
-    //         }],
-    //     from: 
-    //         {
-    //             email: "letahe0619@gmail.com", 
-    //             name:"Sam Smith"
-    //         },
-    //     reply_to: 
-    //         {
-    //             email: "letahe0619@gmail.com",
-    //             name: "Sam Smith"
-    //         }
-    // }
+    // Convert data to Sendgrid input data
+    const sendgridInputData = {
+        personalizations: [{
+            to:[{email: `${data.to}`, name:`${data.to_name}`}],
+            subject: `${data.subject}`
+        }], 
+        content: [{
+            type: "text/plain", value: `${data.body}`
+        }],
+        from: {
+            email: `${data.from}`, 
+            name: `${data.from_name}`
+        },
+        reply_to: {
+            email: `${data.from}`,
+            name: `${data.from_name}`
+        }
+    }
 
+    // Make call to Sendgrid to send the email
     const req = https.request(options, (res) => {
       console.log(`statusCode: ${res.statusCode}`)
-      // res.setEncoding('utf8');
 
       res.on('data', (d) => {
-        process.stdout.write('[data] ' + d)
+        process.stdout.write(d)
       })
     })
 
@@ -49,6 +47,6 @@ exports.sendgridRequest = function(data) {
       console.error(error)
     })
 
-    req.write(JSON.stringify(data))
+    req.write(JSON.stringify(sendgridInputData))
     req.end()
 }
