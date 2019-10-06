@@ -1,23 +1,14 @@
-# Simple Node with Express Server
+# How to Install the App
 
-[![Build Status](https://travis-ci.org/rwieruch/node-express-server.svg?branch=master)](https://travis-ci.org/rwieruch/node-express-server) [![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/) [![Greenkeeper badge](https://badges.greenkeeper.io/rwieruch/node-express-server.svg)](https://greenkeeper.io/)
+Make sure these requirements are set up: [node & npm](https://nodejs.org/en/), [git](https://www.robinwieruch.de/git-essential-commands/)
 
-An easy way to get started with a Express server with Node.js.
+1. `git clone`
+2. `cd email-provider-server`
+3. `npm install`
+4. To kick off the local server, run `npm start`
 
-## Features
+# Languages and Frameworks
 
-* Babel 7
-* Environment Variables
-* Express
+I chose to use Express (NodeJS framework) because it seemed like a preferred language as stated in the coding challenge, and with some familiarity with Node, I thought it would be a great exercise for me to refresh my knowledge there. More recently I have been developing in a Python/WSGI codebase, but didn't feel sure enough to be building a Python server from scratch, so abandoned the idea.
 
-## Requirements
-
-* [node & npm](https://nodejs.org/en/)
-* [git](https://www.robinwieruch.de/git-essential-commands/)
-
-## Installation
-
-* `git clone git@github.com:rwieruch/node-express-server.git`
-* `cd node-express-server`
-* `npm install`
-* `npm start`
+# Notes
