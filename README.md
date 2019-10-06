@@ -14,6 +14,32 @@ Make sure these requirements are set up: [node & npm](https://nodejs.org/en/), [
 4. `npm install`
 5. To kick off the local server, run `npm start`  
 
+# How to Run the App
+
+The app automatically runs on port 3000. Feel free to change it via src/index.js:16.
+
+The app expects JSON input data in the format:
+
+```javascript
+{    
+   to: 'fake@example.com',
+   to_name: 'Ms. Fake',
+   from: 'noreply@uber.com',
+   from_name: 'Uber',
+   subject: 'A Message from Uber',
+   body: '<h1>Your Bill</h1><p>$10</p>'
+}
+```
+
+Example curl command:
+
+```
+curl "http://localhost:3000/email" \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{"to":"jane.doe@gmail.com","to_name":"Jane Doe","from":"sam.smith@gmail.com","from_name":"Sam Smith","subject":"Hello there","body":"<strong>Dear Jane,</strong> hi, how are you?"}'
+```
+
 # Languages and Frameworks
 
 I chose to use Express (NodeJS framework) because it seemed like a preferred language as stated in the coding challenge, and with some familiarity with Node, I thought it would be a great exercise for me to refresh my knowledge there. More recently I have been developing in a Python/WSGI codebase, but didn't feel sure enough to be building a Python server from scratch, so abandoned the idea.
