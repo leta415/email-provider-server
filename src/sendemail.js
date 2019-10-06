@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 var striptags = require('striptags');
+var emailValidator = require("email-validator");
 
 var sendgrid = require('./sendgrid');
 var postmark = require('./postmark');
@@ -19,7 +20,7 @@ exports.sendEmail = function(data, res) {
     // Send back 400 if any of the data input is invalid. Otherwise continue.
     if (!this.validateInput(data)) {
         res.status(400);
-        res.send(`Invalid input. Here is an example input: \n\n${JSON.stringify(validExampleInput, null, 4)}`);
+        res.send(`\n\nInvalid input. Here is an example input: \n\n${JSON.stringify(validExampleInput, null, 4)}`);
     }
 
     // Strip all html tags
@@ -69,7 +70,7 @@ exports.validateTo = function(to) {
     if (this.isStringNullOrEmpty(to)) {
         return false;
     }
-    return this.validateEmail(to);
+    return emailValidator.validate(to);
 }
 
 exports.validateToName = function(toName) {
@@ -80,7 +81,7 @@ exports.validateFrom = function(from) {
     if (this.isStringNullOrEmpty(from)) {
         return false;
     }
-    return this.validateEmail(from);
+    return emailValidator.validate(from);
 }
 
 exports.validateFromName = function(fromName) {
@@ -101,11 +102,3 @@ exports.isStringNullOrEmpty = function(string) {
     }
     return false;
 }
-
-exports.validateEmail = function(email) {
-    // Regex taken from https://stackoverflow.com/questions/52456065/how-to-format-and-validate-email-node-js/52456632
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    
-    return emailRegex.test(email);
-}
-

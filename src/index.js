@@ -8,11 +8,11 @@ app.use(express.json());
 
 // Set up routing for /email
 app.post('/email', (req, res) => {
-    console.log('[req.body] ' + JSON.stringify(req.body));
-
+    // console.log('[req.body] ' + JSON.stringify(req.body));
     sendemail.sendEmail(req.body, res);
+    res.send('Email Sent!');
 });
 
 app.listen(3000, () =>
-    console.log(`Example app listening on port 3000!`),
+    console.log(`Email Provider Server listening on port 3000!`),
 );

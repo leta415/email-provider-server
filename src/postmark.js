@@ -3,8 +3,6 @@ import 'dotenv/config';
 const https = require('https');
 
 exports.postmarkRequest = function(data) {
-    // console.log(`[data before write] ${data}`)
-    // console.log(`[json stringified data before write] ${JSON.stringify(data)}`)
 
     // Build Postmark request options
     const options = {
@@ -12,7 +10,7 @@ exports.postmarkRequest = function(data) {
       path: '/email',
       method: 'POST',
       headers: {
-        'X-Postmark-Server-Token': 'e6564f3a-b8f7-4a62-9405-c69980b537dd',
+        'X-Postmark-Server-Token': `${process.env.POSTMARK_API_KEY}`,
         'Content-Type': 'application/json'
       }
     }
