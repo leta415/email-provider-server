@@ -3,8 +3,8 @@ import 'dotenv/config';
 var striptags = require('striptags');
 var emailValidator = require("email-validator");
 
-var sendgrid = require('./sendgrid');
-var postmark = require('./postmark');
+var SendgridProvider = require('./sendgridProvider');
+var PostmarkProvider = require('./postmarkProvider');
 
 
 exports.sendEmail = function(data, res) {
@@ -28,10 +28,12 @@ exports.sendEmail = function(data, res) {
 
     // Delegate data to the appropriate email provider
     if (`${process.env.USE_POSTMARK}` == '0') {
-        sendgrid.sendgridRequest(data);
+        var sendgridProvider = new SendgridProvider(data);
+        sendgridProvider.sendEmail(res);
 
     } else {
-        postmark.postmarkRequest(data);
+        var postmarkProvider = new PostmarkProvider(data);
+        postmarkProvider.sendEmail(res);
     }
 
     return true;
