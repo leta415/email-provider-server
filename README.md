@@ -2,7 +2,7 @@
 
 Make sure these requirements are set up: [node & npm](https://nodejs.org/en/), [git](https://www.robinwieruch.de/git-essential-commands/)
 
-1. `git clone`
+1. `git clone https://github.com/leta415/email-provider-server.git`
 2. `cd email-provider-server`
 3. `npm install`
 4. To kick off the local server, run `npm start`
