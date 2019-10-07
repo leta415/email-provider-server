@@ -17,6 +17,9 @@ class SendgridProvider extends AbstractEmailProvider {
         }
     }
 
+    /**
+     * Convert the input data to a valid format for Sendgrid
+     */
     convertData() {
         return {
             personalizations: [{

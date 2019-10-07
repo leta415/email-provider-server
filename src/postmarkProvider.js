@@ -17,6 +17,9 @@ class PostmarkProvider extends AbstractEmailProvider {
         }
     }
 
+    /**
+     * Convert the input data to a valid format for Postmark
+     */
     convertData() {
         return {
             from: `${this.data.from_name} ${this.data.from}`,

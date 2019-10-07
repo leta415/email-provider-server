@@ -28,7 +28,7 @@ class EmailProvider {
     }
 
     /**
-     * Implement this function to convert the data input to a format that your email provider takes.
+     * Implement this method to convert the data input to a format that your email provider takes.
      */
     convertData() {
         throw new Error('You have to implement the method convertData in your EmailProvider implementation!');
