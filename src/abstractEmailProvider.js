@@ -1,4 +1,5 @@
-const https = require('https');
+var https = require('https');
+
 
 class EmailProvider {
 
@@ -11,7 +12,20 @@ class EmailProvider {
      * This function makes the call to your provider to send the email.
      */
     sendEmail(res) {
-        const req = https.request(this.options, (res) => {
+
+        // Set up request options.
+        var options = {
+            hostname: `${this.hostname}`,
+            path: `${this.path}`,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        options.headers[`${this.apiAuthHeaderKey}`] = `${this.apiAuthHeaderValue}`;
+
+        // Make the request to the email provider.
+        const req = https.request(options, (res) => {
           console.log(`statusCode: ${res.statusCode}`)
 
           res.on('data', (d) => {
