@@ -2,12 +2,12 @@
 This is a server application that sends a plain text email, allowing the user to choose between 2 different email providers, Sendgrid or Postmark. It takes input data formatted like this:
 ```javascript
 {    
-   to: 'fake@example.com',
-   to_name: 'Ms. Fake',
-   from: 'noreply@uber.com',
-   from_name: 'Uber',
-   subject: 'A Message from Uber',
-   body: '<h1>Your Bill</h1><p>$10</p>'
+   to: 'fake@example.com',              // valid email address
+   to_name: 'Ms. Fake',                 // nonempty string
+   from: 'noreply@uber.com',            // valid email address
+   from_name: 'Uber',                   // nonempty string
+   subject: 'A Message from Uber',      // nonempty string
+   body: '<h1>Your Bill</h1><p>$10</p>' // html or plain text
 }
 ```
 Note that the `body` field can take html, but will be stripped of all html tags before the email is sent.
