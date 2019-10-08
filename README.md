@@ -74,7 +74,7 @@ The bigger idea behind challenge seemed to be to abstract away the common functi
 If I were to spend more time on this project, I would:
 - Figure out why my smoke tests won't properly exit after they have finished running.
 - Increase test coverage for the classes inside postmarkProvider.js and sendgridProvider.js.
-- Look into how I could increase test coverage, as well as how I could refactor the code to be more testable.
-- Test a broader range of scenarios and develop more specific error logging.
+- Think about if I could refactor the code to be more testable.
+- Test a broader range of scenarios and add more specific error logging.
 - Figure out a friendlier way to switch between the 2 providers. Or I would develop actual failover logic.
 - See if there is a better way to organize the env variables and where they live.
