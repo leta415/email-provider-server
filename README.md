@@ -4,7 +4,7 @@ Make sure these requirements are set up: [node & npm](https://nodejs.org/en/), [
 
 1. `git clone https://github.com/leta415/email-provider-server.git`
 2. `cd email-provider-server`
-3. Create a file called `.env` in the root directory of the repository. Inside the file, define the following variables. To use the Sendgrid email provider, keep the USE_POSTMARK value at 0. Otherwise, use the Postmark email provider, change the value to 1.
+3. Create a file called `.env` in the root directory of the repository. Inside the file, define the following variables. To use the Sendgrid email provider, keep the USE_POSTMARK value at 0. Otherwise, use the Postmark email provider, change the value to 1. Keep in mind if you change a value in `.env`, you must rerun `npm start`.
 
    ```bash
    SENDGRID_API_KEY=<replace_with_your_sendgrid_api_key>
@@ -17,6 +17,8 @@ Make sure these requirements are set up: [node & npm](https://nodejs.org/en/), [
 # How to Run the App
 
 The app automatically runs on port 3000. Feel free to change it via src/index.js:16.
+
+Once you have `npm start` running, open a new terminal tab and try hitting the server. The following are some example curl commands to do so.
 
 The app expects JSON input data in the format:
 
@@ -40,8 +42,32 @@ curl "http://localhost:3000/email" \
 -d '{"to":"jane.doe@gmail.com","to_name":"Jane Doe","from":"sam.smith@gmail.com","from_name":"Sam Smith","subject":"Hello there","body":"<strong>Dear Jane,</strong> hi, how are you?"}'
 ```
 
+# How to Run the Tests
+
+## Unit Tests
+
+`npm test`
+
+## Smoke Tests
+
+`routes.js` contains a few end to end tests. In order to run these tests, you need to append the following properties into your `.env` with values for each. Make sure each email you set is an approved to/from email per provider, i.e. Sendgrid, Postmark. 
+```bash
+TEST_SENDGRID_TO_EMAIL=
+TEST_SENDGRID_FROM_EMAIL=
+TEST_POSTMARK_TO_EMAIL=
+TEST_POSTMARK_FROM_EMAIL=
+```
+Then to run the tests, run this command in a terminal:
+`./node_modules/mocha/bin/mocha test/routes.js`
+
 # Languages and Frameworks
 
 I chose to use Express (NodeJS framework) because it seemed like a preferred language as stated in the coding challenge, and with some familiarity with Node, I thought it would be a great exercise for me to refresh my knowledge there. More recently I have been developing in a Python/WSGI codebase, but didn't feel sure enough to be building a Python server from scratch, so abandoned the idea.
 
 # Notes
+The bigger idea behind challenge seemed to be to abstract away the common functionalities across multiple email providers, so I made sure to abstract away as much as I could in the class EmailProvider (src/abstractEmailProvider.js), in order to minimize the development efforts of EmailProvider implementations (i.e. SendgridProvider, PostmarkProvider, and any hypothetical future EmailProvider implementations).
+
+If I were to spend more time on this project:
+- I would look into how I could increase test coverage, as well as how I could refactor the code to be more testable.
+- I would test a broader range of scenarios and develop more specific error logging.
+- I would figure out a friendlier way to switch between the 2 providers. Or I would develop actual failover logic.
