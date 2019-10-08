@@ -1,5 +1,5 @@
-import 'dotenv/config';
-import express from 'express';
+require('dotenv').config();
+var express = require('express');
 
 var sendemail = require('./sendemail');
 
@@ -11,9 +11,10 @@ app.use(express.json());
  */
 app.post('/email', (req, res) => {
     sendemail.sendEmail(req.body, res);
-    res.send('Email Sent!');
 });
 
 app.listen(3000, () =>
     console.log(`Email Provider Server listening on port 3000!`),
 );
+
+module.exports = app;

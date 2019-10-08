@@ -7,7 +7,7 @@ var SendgridProvider = require('./sendgridProvider');
 var PostmarkProvider = require('./postmarkProvider');
 
 /**
- * This method is generic for sending any email. It will delegate to an appropriate email provider.
+ * This method the delegator for sending email. It will delegate the task to an appropriate email provider.
  *
  * @param data Input data to send the email with. Example:
  *               {
@@ -32,7 +32,8 @@ exports.sendEmail = function(data, res) {
     // Send back 400 if any of the data input is invalid. Otherwise continue.
     if (!this.validateInput(data)) {
         res.status(400);
-        res.send(`\n\nInvalid input. Here is an example input: \n\n${JSON.stringify(validExampleInput, null, 4)}`);
+        res.send(`\n\nInvalid input. Here is an example input: \n\n${JSON.stringify(validExampleInput, null, 4)}\n`);
+        return;
     }
 
     // Strip all html tags
@@ -56,27 +57,21 @@ exports.sendEmail = function(data, res) {
  */
 exports.validateInput = function(input) {
     if (!this.validateTo(input.to)) {
-        console.log('invalid to')
         return false;
     }
     if (!this.validateToName(input.to_name)) {
-        console.log('invalid to name')
         return false;
     }
     if (!this.validateFrom(input.from)) {
-        console.log('invalid from')
         return false;
     }
     if (!this.validateFromName(input.from_name)) {
-        console.log('invalid from name')
         return false;
     }
     if (!this.validateSubject(input.subject)) {
-        console.log('invalid subject')
         return false;
     }
     if (!this.validateBody(input.body)) {
-        console.log('invalid body')
         return false;
     }
 

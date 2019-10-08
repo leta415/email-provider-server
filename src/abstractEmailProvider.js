@@ -1,44 +1,56 @@
-var https = require('https');
+var axios = require('axios');
 
 
+/**
+ * This is an abstract class that contains data and functionalities that are common across all email providers.
+ */
 class EmailProvider {
 
+    /**
+     * This is an abstract constructor, not meant to be called directly. Child classes should override
+     * this method, and call super(data) from there.
+     */
     constructor(data) {
         this.data = data;
-        console.log(`EmailProvider constructor data: ${JSON.stringify(this.data)}`)
     }
 
     /**
      * This function makes the call to your provider to send the email.
      */
-    sendEmail(res) {
+    sendEmail(emailRes) {
+        var that = this;
 
-        // Set up request options.
-        var options = {
-            hostname: `${this.hostname}`,
-            path: `${this.path}`,
-            method: 'POST',
+        // Set up the request config
+        var requestConfig = {
+            url: `${this.path}`,
+            method: 'post',
+            baseURL: `https:\/\/${this.hostname}`,
+            transformRequest: [function (data, headers) {
+                return JSON.stringify(that.convertData());
+            }],
+            data: this.data,
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
-        options.headers[`${this.apiAuthHeaderKey}`] = `${this.apiAuthHeaderValue}`;
+        };
+        requestConfig.headers[`${this.apiAuthHeaderKey}`] = `${this.apiAuthHeaderValue}`;
 
-        // Make the request to the email provider.
-        const req = https.request(options, (res) => {
-          console.log(`statusCode: ${res.statusCode}`)
 
-          res.on('data', (d) => {
-            process.stdout.write(d)
-          })
-        })
-
-        req.on('error', (error) => {
-          console.error(error)
-        })
-
-        req.write(JSON.stringify(this.convertData()))
-        req.end()
+        // Make the call to the email provider
+        axios(requestConfig)
+            .then(function (response) {
+                // handle success
+                emailRes.send('\nEmail sent [\\/]\n');
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.error(`StatusCode: ${error.response.status} ${JSON.stringify(error.response.data)}`);
+                    emailRes.status(error.response.status);
+                }
+                emailRes.send('\nThere was an error while trying to send the email.\n');
+            })
     }
 
     /**
