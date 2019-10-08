@@ -1,6 +1,8 @@
 # How to Install the App
 
-Make sure these requirements are set up: [node & npm](https://nodejs.org/en/), [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+Make sure these requirements are set up: 
+- npm 6.9.0, node 10.16.3 [download here](https://nodejs.org/en/)
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 1. `git clone https://github.com/leta415/email-provider-server.git`
 2. `cd email-provider-server`
