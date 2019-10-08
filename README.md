@@ -71,8 +71,9 @@ I chose to use Express (NodeJS framework) because it seemed like a preferred lan
 # Notes
 The bigger idea behind challenge seemed to be to abstract away the common functionalities across multiple email providers, so I made sure to abstract away as much as I could in the class EmailProvider (src/abstractEmailProvider.js), in order to minimize the development efforts of EmailProvider implementations (i.e. SendgridProvider, PostmarkProvider, and any hypothetical future EmailProvider implementations).
 
-If I were to spend more time on this project:
+If I were to spend more time on this project, I would:
 - Figure out why my smoke tests won't properly exit after they have finished running.
-- I would look into how I could increase test coverage, as well as how I could refactor the code to be more testable.
-- I would test a broader range of scenarios and develop more specific error logging.
-- I would figure out a friendlier way to switch between the 2 providers. Or I would develop actual failover logic.
+- Increase test coverage for the classes inside postmarkProvider.js and sendgridProvider.js.
+- Look into how I could increase test coverage, as well as how I could refactor the code to be more testable.
+- Test a broader range of scenarios and develop more specific error logging.
+- Figure out a friendlier way to switch between the 2 providers. Or I would develop actual failover logic.
