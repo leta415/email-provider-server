@@ -5,6 +5,10 @@ const express = require('express');
 const app = require('../src/index');
 
 describe('POST /email', function() {
+    after(function() { 
+        process.exit(); // Added this because the tests suite wouldn't exit when done running
+    }); 
+
     // Increase timeout from the default 2000ms to give the post requests buffer time
     this.timeout(15000);
 
