@@ -7,7 +7,10 @@
 ## Install Steps
 1. `git clone https://github.com/leta415/email-provider-server.git`
 2. `cd email-provider-server`
-3. Create a file called `.env` in the root directory of the repository. Inside the file, define the following variables. To use the Sendgrid email provider, keep the USE_POSTMARK value at 0. Otherwise, use the Postmark email provider, change the value to 1. Keep in mind if you change a value in `.env`, you must rerun `npm start`.
+3. Get API keys for the email providers: 
+   - Sendgrid: https://sendgrid.com/docs/for-developers/sending-email/api-getting-started/
+   - Postmark Server-Token: https://postmarkapp.com/developer/api/overview
+4. Create a file called `.env` in the root directory of the repository. Inside the file, define the following variables. To use the Sendgrid email provider, keep the USE_POSTMARK value at 0. Otherwise, use the Postmark email provider, change the value to 1. Keep in mind if you change a value in `.env`, you must rerun `npm start`.
 
    ```bash
    SENDGRID_API_KEY=<replace_with_your_sendgrid_api_key>
@@ -21,7 +24,7 @@
 
 The app automatically runs on port 3000. Feel free to change it via src/index.js:16.
 
-Once you have `npm start` running, open a new terminal tab and try hitting the server. The following are some example curl commands to do so.
+Once you have `npm start` running, open a new terminal tab and try hitting the server. The following are some example curl commands to do so. Make sure to replace the `to` and `from` fields with approved emails per provider, i.e. Sendgrid, Postmark.
 
 The app expects JSON input data in the format:
 
