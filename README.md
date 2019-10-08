@@ -1,9 +1,10 @@
 # How to Install the App
 
-Make sure these requirements are set up: 
+## Prerequisites 
 - npm 6.9.0, node 10.16.3 [download here](https://nodejs.org/en/)
 - [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
+## Install Steps
 1. `git clone https://github.com/leta415/email-provider-server.git`
 2. `cd email-provider-server`
 3. Create a file called `.env` in the root directory of the repository. Inside the file, define the following variables. To use the Sendgrid email provider, keep the USE_POSTMARK value at 0. Otherwise, use the Postmark email provider, change the value to 1. Keep in mind if you change a value in `.env`, you must rerun `npm start`.
