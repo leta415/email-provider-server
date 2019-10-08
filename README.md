@@ -77,3 +77,4 @@ If I were to spend more time on this project, I would:
 - Look into how I could increase test coverage, as well as how I could refactor the code to be more testable.
 - Test a broader range of scenarios and develop more specific error logging.
 - Figure out a friendlier way to switch between the 2 providers. Or I would develop actual failover logic.
+- See if there is a better way to organize the env variables and where they live.
