@@ -50,6 +50,8 @@ curl "http://localhost:3000/email" \
 
 ## Smoke Tests
 
+### Initial Setup
+
 `routes.js` contains a few end to end tests. In order to run these tests, you need to append the following properties into your `.env` with values for each. Make sure each email you set is an approved to/from email per provider, i.e. Sendgrid, Postmark. 
 ```bash
 TEST_SENDGRID_TO_EMAIL=
@@ -58,7 +60,9 @@ TEST_POSTMARK_TO_EMAIL=
 TEST_POSTMARK_FROM_EMAIL=
 ```
 Then to run the tests, run this command in a terminal:
-`./node_modules/mocha/bin/mocha test/routes.js`
+```
+./node_modules/mocha/bin/mocha test/routes.js
+```
 
 # Languages and Frameworks
 
@@ -68,6 +72,7 @@ I chose to use Express (NodeJS framework) because it seemed like a preferred lan
 The bigger idea behind challenge seemed to be to abstract away the common functionalities across multiple email providers, so I made sure to abstract away as much as I could in the class EmailProvider (src/abstractEmailProvider.js), in order to minimize the development efforts of EmailProvider implementations (i.e. SendgridProvider, PostmarkProvider, and any hypothetical future EmailProvider implementations).
 
 If I were to spend more time on this project:
+- Figure out why my smoke tests won't properly exit after they have finished running.
 - I would look into how I could increase test coverage, as well as how I could refactor the code to be more testable.
 - I would test a broader range of scenarios and develop more specific error logging.
 - I would figure out a friendlier way to switch between the 2 providers. Or I would develop actual failover logic.
