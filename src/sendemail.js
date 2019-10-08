@@ -53,6 +53,7 @@ exports.sendEmail = function(data, res) {
 /**
  * Validate the data input.
  *
+ * @param input The input data coming in from /email.
  * @return {boolean} Returns true if all the data input is valid, false otherwise.
  */
 exports.validateInput = function(input) {
@@ -81,6 +82,7 @@ exports.validateInput = function(input) {
 /**
  * Validate the 'to' field.
  *
+ * @param The string value of the 'to' field.
  * @return {boolean} Returns true if the 'to' value is a nonempty string and a valid email address, false otherwise.
  */
 exports.validateTo = function(to) {
@@ -93,6 +95,7 @@ exports.validateTo = function(to) {
 /**
  * Validate the 'to_name' field.
  *
+ * @param The string value of the 'to_name' field.
  * @return {boolean} Returns true if the 'to_name' value is a nonempty string, false otherwise.
  */
 exports.validateToName = function(toName) {
@@ -102,6 +105,7 @@ exports.validateToName = function(toName) {
 /**
  * Validate the 'from' field.
  *
+ * @param The string value of the 'from' field.
  * @return {boolean} Returns true if the 'from' value is a nonempty string and a valid email address, false otherwise.
  */
 exports.validateFrom = function(from) {
@@ -114,6 +118,7 @@ exports.validateFrom = function(from) {
 /**
  * Validate the 'from_name' field.
  *
+ * @param The string value of the 'from_name' field.
  * @return {boolean} Returns true if the 'from_name' value is a nonempty string, false otherwise.
  */
 exports.validateFromName = function(fromName) {
@@ -123,6 +128,7 @@ exports.validateFromName = function(fromName) {
 /**
  * Validate the 'subject' field.
  *
+ * @param The string value of the 'subject' field.
  * @return {boolean} Returns true if the 'subject' value is a nonempty string, false otherwise.
  */
 exports.validateSubject = function(subject) {
@@ -132,6 +138,7 @@ exports.validateSubject = function(subject) {
 /**
  * Validate the 'body' field.
  *
+ * @param The string value of the 'body' field.
  * @return {boolean} Returns true if the 'body' value is a nonempty string, false otherwise.
  */
 exports.validateBody = function(body) {

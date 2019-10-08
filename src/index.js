@@ -1,7 +1,6 @@
 require('dotenv').config();
-var express = require('express');
-
-var sendemail = require('./sendemail');
+const express = require('express');
+const sendemail = require('./sendemail');
 
 const app = express();
 app.use(express.json());
